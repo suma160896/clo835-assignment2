@@ -8,7 +8,7 @@ resource "aws_ecr_repository" "my_repo" {
     scan_on_push = true
   }
 }
-#added comment ffffff
+#added comment
 data "aws_vpc" "default" {
   default = true
 }
