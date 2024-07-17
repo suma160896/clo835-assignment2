@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-app-pod
+  namespace: web-app
+  labels:
+    app: employees
+spec:
+  containers:
+    - name: web-app-container
+      image: 160045352367.dkr.ecr.us-east-1.amazonaws.com/my-repo:webapp-v0.2
+      ports:
+        - containerPort: 80
+      env:
+        - name: DBHOST
+          value: "10.244.0.11"
+        - name: DBUSER
+          value: "root"
+        - name: DBPWD
+          value: "pwd"
+        - name: DATABASE
+          value: "employees"
+        - name: APP_COLOR
+          value: "lime"
+        - name: DBPORT
+          value: "3306"  # Ensure DBPORT is a string value
+  imagePullSecrets:
+    - name: ecr-registry-secret
