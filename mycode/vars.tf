@@ -4,7 +4,7 @@ variable "path_to_linux_key" {
   type        = string
 }
 variable "instance_type" {
-  default     = "t2.micro"
+  default     = "m5.large"
   description = "Instance type to use"
   type        = string
 }

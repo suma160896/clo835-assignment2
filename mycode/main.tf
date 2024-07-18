@@ -59,7 +59,7 @@ data "aws_ami" "amazon_linux" {
 resource "aws_instance" "web" {
    #ami           = data.aws_ami.ubuntu.id# Replace with your desired AMI
   ami           = data.aws_ami.amazon_linux.id
-  instance_type = "t2.micro"
+  instance_type = "m5.large"
   subnet_id     = data.aws_subnet.default.id
   key_name               = aws_key_pair.instance_key.key_name
   #instance_type          = var.instance_type
