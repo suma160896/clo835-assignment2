@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-deployment
+  namespace: web-app
+  labels:
+    app: employees
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: employees
+  template:
+    metadata:
+      labels:
+        app: employees
+    spec:
+      containers:
+        - name: web-app-container
+          image: 160045352367.dkr.ecr.us-east-1.amazonaws.com/my-repo:webapp-v0.2
+          ports:
+            - containerPort: 80
+          env:
+            - name: DBHOST
+              value: "10.244.0.10"
+            - name: DBUSER
+              value: "root"
+            - name: DBPWD
+              value: "pwd"
+            - name: DATABASE
+              value: "employees"
+            - name: APP_COLOR
+              value: "lime"
+            - name: DBPORT
+              value: "3306"
+      imagePullSecrets:
+        - name: ecr-registry-secret
